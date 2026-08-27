@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Student Register</h1>
+      <p>Manage student registrations</p>
+    </div>
+    <button id="exportBtn" class="secondary">Export CSV</button>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <div class="card"><span>Total Students</span><strong id="totalStudents">0</strong></div>
+      <div class="card"><span>Male</span><strong id="maleStudents">0</strong></div>
+      <div class="card"><span>Female</span><strong id="femaleStudents">0</strong></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2 id="formTitle">Register Student</h2>
+        <button id="cancelEdit" class="secondary hidden">Cancel Edit</button>
+      </div>
+
+      <form id="studentForm">
+        <input type="hidden" id="studentId">
+        <div class="grid">
+          <label>Full Name<input id="name" required maxlength="80"></label>
+          <label>Email<input id="email" type="email" required></label>
+          <label>Phone<input id="phone" required pattern="[0-9]{10}" maxlength="10"></label>
+          <label>Date of Birth<input id="dob" type="date" required></label>
+          <label>Gender
+            <select id="gender" required>
+              <option value="">Select</option><option>Male</option><option>Female</option><option>Other</option>
+            </select>
+          </label>
+          <label>Course
+            <select id="course" required>
+              <option value="">Select course</option><option>BCA</option><option>BSc</option>
+              <option>BBA</option><option>BCom</option><option>MCA</option>
+            </select>
+          </label>
+          <label>Year
+            <select id="year" required>
+              <option value="">Select year</option><option>1st Year</option><option>2nd Year</option>
+              <option>3rd Year</option><option>4th Year</option>
+            </select>
+          </label>
+          <label class="full">Address<textarea id="address" required rows="3"></textarea></label>
+        </div>
+        <button class="primary" type="submit" id="saveBtn">Register Student</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>Registered Students</h2>
+        <input id="search" class="search" placeholder="Search by name, email or course">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Course</th><th>Year</th><th>Gender</th><th>Actions</th></tr></thead>
+          <tbody id="studentTable"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="empty">No students registered yet.</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
